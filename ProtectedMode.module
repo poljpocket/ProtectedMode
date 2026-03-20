@@ -24,7 +24,7 @@ class ProtectedMode extends WireData implements Module, ConfigurableModule {
             'summary' => 'Allows you to put your site into protected mode so that users must be logged in to access the front-end of the site.',
             'author' => 'Adrian Jones',
             'href' => 'http://modules.processwire.com/modules/protected-mode/',
-            'version' => '1.1.3',
+            'version' => '1.1.4',
             'permanent' => false,
             'autoload' => true,
             'singular' => true,
@@ -58,15 +58,14 @@ class ProtectedMode extends WireData implements Module, ConfigurableModule {
                 "loginButtonText" => "Login",
                 "logincss" => "
 .protected-mode-container {
-    width: 400px;
-    max-width: calc(100vw - 20px);
-    height: 150px;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    display: grid;
+    place-content: center;
+    min-height: 100svh;
+}
+
+form {
+    width: 40ch;
+    max-width: 95svw;
 }
 
 p, legend {
@@ -81,19 +80,18 @@ p, legend {
 button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 100%;
-    padding: 0.5em 1em;
-    background-color: #006DD3;
+    padding: 0.5rem 1rem;
+    background-color: #000;
     color:#fff;
     text-decoration: none;
-    border: 0 rgba(0,0,0,0);
-    border-radius: 2px;
+    border: 1px solid #000;
+   cursor: pointer;
 }
+
 button:hover,
 button:focus {
-    background-color: #007DD2;
-}
-button:focus {
-    outline: 0;
+    background-color: #fff;
+    color:#000;
 }
 
 input[type='text'],
@@ -101,12 +99,9 @@ input[type='password'] {
     font-size: 100%;
     padding: 0.5rem;
     display: inline-block;
-    border: 1px solid #ccc;
-    box-shadow: inset 0 1px 3px #ddd;
-    border-radius: 4px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+    border: 1px solid #000;
     box-sizing: border-box;
+    margin-bottom: .25rem;
 }
 "
             );
@@ -188,7 +183,7 @@ input[type='password'] {
                     <head>
                         <meta charset='utf-8' />
                         <meta name='viewport' content='width=device-width, initial-scale=1'>
-                        <title>protected :: ".$this->wire('page')->title."</title>
+                        <title>protected mode</title>
                         <style>
                             ".$this->data['logincss']."
                         </style>
